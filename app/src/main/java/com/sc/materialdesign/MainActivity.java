@@ -2,19 +2,29 @@ package com.sc.materialdesign;
 
 import android.graphics.Color;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
+    private DrawerLayout mDrawer;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +34,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        // Pour afficher l'icône du drawer
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        // Lier le Drawer
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nvView);
+        navigationView.setNavigationItemSelectedListener(this);
+
         // Lier le FloatingButton
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        //
 
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
@@ -96,6 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 snackbar2.show();
                 return true;
 
+            case android.R.id.home:
+
+                mDrawer.openDrawer(GravityCompat.START);
+
+                return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -103,4 +129,31 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // instructions pour la caméra
+        } else if (id == R.id.nav_gallery) {
+            // instructions pour la galerie
+        } else if (id == R.id.nav_slideshow) {
+            // instructions pour le diaporama
+        } else if (id == R.id.nav_manage) {
+            // instructions pour la gestion
+        } else if (id == R.id.nav_share) {
+            // instructions pour le partage
+        } else if (id == R.id.nav_send) {
+            // instructions pour l’envoi
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+
 }
