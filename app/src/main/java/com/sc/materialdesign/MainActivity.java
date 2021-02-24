@@ -1,13 +1,16 @@
 package com.sc.materialdesign;
 
 import android.graphics.Color;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 textView.setTextColor(Color.YELLOW);
 
                 snackbar.show();
+
+                mDrawer.openDrawer(GravityCompat.START);
 
 
             }
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 mDrawer.openDrawer(GravityCompat.START);
 
+
                 return true;
 
             default:
@@ -136,9 +143,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_camera) {
-            // instructions pour la caméra
+            Toast.makeText(this, "boutton cam clicked", Toast.LENGTH_SHORT).show();
+
         } else if (id == R.id.nav_gallery) {
-            // instructions pour la galerie
+            Toast.makeText(this, "boutton gallery clicked", Toast.LENGTH_SHORT).show();
+
         } else if (id == R.id.nav_slideshow) {
             // instructions pour le diaporama
         } else if (id == R.id.nav_manage) {
@@ -149,11 +158,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // instructions pour l’envoi
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
+        mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

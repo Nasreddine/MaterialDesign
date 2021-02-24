@@ -82,7 +82,8 @@
 
                 android:background="@android:color/white"
 
-                app:menu="@menu/drawer_menu"  app:headerLayout="@layout/nav_header">
+                app:menu="@menu/drawer_menu"
+                app:headerLayout="@layout/nav_header">
 
             </com.google.android.material.navigation.NavigationView>
 
